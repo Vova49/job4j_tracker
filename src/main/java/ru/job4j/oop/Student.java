@@ -6,6 +6,10 @@ public class Student {
         System.out.println("Tra tra tra");
     }
 
+    public void sing() {
+        System.out.println("I believe I can fly");
+    }
+
     public static void main(String[] args) {
         Student petya = new Student();
         petya.music();
@@ -14,9 +18,5 @@ public class Student {
         petya.sing();
         petya.sing();
         petya.sing();
-    }
-
-    public void sing() {
-        System.out.println("I believe I can fly");
     }
 }
