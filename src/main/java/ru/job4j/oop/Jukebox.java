@@ -12,6 +12,11 @@ public class Jukebox {
             default:
                 System.out.println("Песня не найдена");
         }
+        String result = switch (position) {
+            case 1 -> "Пусть бегут неуклюже";
+            case 2 -> "Спокойной ночи";
+            default -> "Песня не найдена";
+        };
     }
 
     public static void main(String[] args) {
