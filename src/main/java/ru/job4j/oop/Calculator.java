@@ -8,12 +8,6 @@ public class Calculator {
         return x + y;
     }
 
-    public static void main(String[] args) {
-        Calculator calculator = new Calculator();
-        int rsl = calculator.sumAllOperation(5);
-        System.out.println(rsl);
-    }
-
     public int multiply(int a) {
         return x * a;
     }
@@ -28,5 +22,11 @@ public class Calculator {
 
     public int sumAllOperation(int a) {
         return sum(a) + minus(a) + divide(a) + multiply(a);
+    }
+
+    public static void main(String[] args) {
+        Calculator calculator = new Calculator();
+        int rsl = calculator.sumAllOperation(5);
+        System.out.println(rsl);
     }
 }
