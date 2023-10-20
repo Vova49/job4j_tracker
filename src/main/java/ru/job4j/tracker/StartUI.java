@@ -22,10 +22,6 @@ public class StartUI {
         }
     }
 
-    public Item(String name) {
-        this.name = name;
-    }
-
     private void showMenu() {
         String[] menu = {
                 "Добавить новую заявку", "Показать все заявки", "Изменить заявку",
