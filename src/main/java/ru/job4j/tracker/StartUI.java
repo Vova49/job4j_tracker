@@ -5,7 +5,7 @@ public class StartUI {
         boolean run = true;
         while (run) {
             showMenu();
-            int select = input.askInt("Выбрать: ");
+            int select = input.askInt("Enter id: ");
             if (select == 0) {
                 createItem(input, tracker);
             } else if (select == 1) {
