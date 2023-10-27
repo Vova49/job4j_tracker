@@ -53,4 +53,21 @@ class StartUITest {
         new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId())).isNull();
     }
+
+    @Test
+    void whenExit() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[]{"0"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString()).isEqualTo(
+                "Меню:" + System.lineSeparator()
+                        + "0. Завершить программу" + System.lineSeparator()
+        );
+    }
 }
