@@ -6,6 +6,7 @@ public class FindAllAction implements UserAction {
     public FindAllAction(Output out) {
         this.out = out;
     }
+
     @Override
     public String name() {
         return "Показать все заявки";
