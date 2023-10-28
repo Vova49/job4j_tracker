@@ -20,7 +20,6 @@ class StartUITest {
         assertThat(tracker.findAll()[0].getName()).isEqualTo("Item name");
     }
 
-
     @Test
     void whenReplaceItem() {
         Tracker tracker = new Tracker();
@@ -130,9 +129,9 @@ class StartUITest {
     void whenFindByNameItemTestOutputIsSuccessfully() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
-        String Name = "New Test Name";
+        String FindName = "New Test Name";
         Input in = new StubInput(
-                new String[]{"0", Name, "1"}
+                new String[]{"0", FindName, "1"}
         );
         UserAction[] actions = new UserAction[]{
                 new FindByNameAction(out),
