@@ -129,9 +129,9 @@ class StartUITest {
     void whenFindByNameItemTestOutputIsSuccessfully() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
-        String FindName = "New Test Name";
+        String findName = "New Test Name";
         Input in = new StubInput(
-                new String[]{"0", FindName, "1"}
+                new String[]{"0", findName, "1"}
         );
         UserAction[] actions = new UserAction[]{
                 new FindByNameAction(out),
