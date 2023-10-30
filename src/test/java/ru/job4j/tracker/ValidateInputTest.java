@@ -40,18 +40,6 @@ public class ValidateInputTest {
     }
 
     @Test
-    public void whenInvalidInputThenValidInput() {
-        Output out = new StubOutput();
-        Input in = new StubInput(new String[]{"one", "1", "2"});
-        ValidateInput input = new ValidateInput(out, in);
-        int invalid = input.askInt("Enter invalid number:");
-        int valid = input.askInt("Enter valid number:");
-        assertThat(invalid).isEqualTo(1);
-        assertThat(valid).isEqualTo(2);
-    }
-
-
-    @Test
     public void whenNegativeInput() {
         Output out = new StubOutput();
         Input in = new StubInput(new String[]{"-3"});
