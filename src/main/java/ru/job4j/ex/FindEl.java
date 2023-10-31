@@ -10,7 +10,7 @@ public class FindEl {
             }
         }
         if (rsl == -1) {
-            throw new IllegalArgumentException("ElementNotFoundException");
+            throw new IllegalArgumentException("Элемент не найден");
         }
         return rsl;
     }
