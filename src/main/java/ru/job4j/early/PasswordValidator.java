@@ -26,9 +26,7 @@ public class PasswordValidator {
                 hasDigit = true;
             } else if (!Character.isLetterOrDigit(symbol)) {
                 hasSpecial = true;
-                break;
             }
-
         }
 
         if (!hasUpCase) {
@@ -45,6 +43,9 @@ public class PasswordValidator {
 
         if (!hasSpecial) {
             throw new IllegalArgumentException("Password should contain at least one special symbol");
+        }
+        if (!hasUpCase || !hasLowCase || !hasDigit || !hasSpecial) {
+            throw new IllegalArgumentException("Password should meet all the criteria");
         }
 
         for (String forbidden : FORBIDDEN) {
