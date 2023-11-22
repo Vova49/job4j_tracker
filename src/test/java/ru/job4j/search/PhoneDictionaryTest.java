@@ -1,4 +1,3 @@
-// PhoneDictionaryTest.java
 package ru.job4j.search;
 
 import org.junit.jupiter.api.Test;
