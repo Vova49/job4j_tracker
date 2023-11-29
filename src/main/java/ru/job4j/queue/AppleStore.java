@@ -22,10 +22,13 @@ public class AppleStore {
 
     public String getFirstUpsetCustomer() {
         String firstUpsetCustomer = null;
-        while (!queue.isEmpty()) {
+        int i = 0;
+        while (i < count && !queue.isEmpty()) {
             Customer customer = queue.poll();
-            firstUpsetCustomer = customer.getName();
-            break;
+            if (customer.getAmount() > count) {
+                firstUpsetCustomer = customer.getName();
+            }
+            i++;
         }
         return firstUpsetCustomer;
     }
