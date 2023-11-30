@@ -21,15 +21,9 @@ public class AppleStore {
     }
 
     public String getFirstUpsetCustomer() {
-        String firstUpsetCustomer = null;
-        int i = 0;
-        while (i < count && !queue.isEmpty()) {
-            Customer customer = queue.poll();
-            if (customer.getAmount() > count) {
-                firstUpsetCustomer = customer.getName();
-            }
-            i++;
+        for (int i = 0; i < count; i++) {
+            queue.poll();
         }
-        return firstUpsetCustomer;
+        return queue.peek() != null ? queue.peek().getName() : "";
     }
 }
