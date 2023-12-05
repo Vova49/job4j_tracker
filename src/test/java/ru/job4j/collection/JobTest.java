@@ -46,6 +46,7 @@ public class JobTest {
         );
         assertThat(rsl).isLessThan(0);
     }
+
     @Test
     public void whenCompareCombinedComparator() {
         Comparator<Job> combinedComparator = new JobAscByName()
