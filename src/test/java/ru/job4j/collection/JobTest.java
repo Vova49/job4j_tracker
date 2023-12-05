@@ -8,44 +8,63 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class JobTest {
     @Test
-    public void whenComparatorAscByName() {
+    public void whenCompareAscByName() {
         Comparator<Job> comparator = new JobAscByName();
-        int rsl = comparator.compare(new Job("Impl task", 0), new Job("Fix bug", 1));
-        assertThat(rsl).isGreaterThan(0);
+        int rsl = comparator.compare(
+                new Job("Task A", 1),
+                new Job("Task B", 2)
+        );
+        assertThat(rsl).isLessThan(0);
     }
 
     @Test
-    public void whenComparatorAscByPriority() {
+    public void whenCompareAscByPriority() {
         Comparator<Job> comparator = new JobAscByPriority();
-        int rsl = comparator.compare(new Job("Impl task", 0), new Job("Fix bug", 1));
+        int rsl = comparator.compare(
+                new Job("Task A", 1),
+                new Job("Task B", 2)
+        );
         assertThat(rsl).isLessThan(0);
     }
 
     @Test
-    public void whenComparatorDescByName() {
+    public void whenCompareDescByName() {
         Comparator<Job> comparator = new JobDescByName();
-        int rsl = comparator.compare(new Job("Impl task", 0), new Job("Fix bug", 1));
+        int rsl = comparator.compare(
+                new Job("Task B", 2),
+                new Job("Task A", 1)
+        );
         assertThat(rsl).isLessThan(0);
     }
 
     @Test
-    public void whenComparatorDescByPriority() {
+    public void whenCompareDescByPriority() {
         Comparator<Job> comparator = new JobDescByPriority();
-        int rsl = comparator.compare(new Job("Impl task", 0), new Job("Fix bug", 1));
-        assertThat(rsl).isGreaterThan(0);
+        int rsl = comparator.compare(
+                new Job("Task B", 2),
+                new Job("Task A", 1)
+        );
+        assertThat(rsl).isLessThan(0);
     }
-
     @Test
-    public void whenComparatorByNameAndPriority() {
-        Comparator<Job> comparator = new JobAscByName().thenComparing(new JobAscByPriority());
-        int rsl = comparator.compare(new Job("Fix bug", 1), new Job("Impl task", 0));
+    public void whenCompareCombinedComparator() {
+        Comparator<Job> combinedComparator = new JobAscByName()
+                .thenComparing(new JobAscByPriority());
+        int rsl = combinedComparator.compare(
+                new Job("Task A", 1),
+                new Job("Task B", 2)
+        );
         assertThat(rsl).isLessThan(0);
     }
 
     @Test
-    public void whenComparatorByDescNameAndDescPriority() {
-        Comparator<Job> comparator = new JobDescByName().thenComparing(new JobDescByPriority());
-        int rsl = comparator.compare(new Job("Fix bug", 1), new Job("Impl task", 0));
-        assertThat(rsl).isGreaterThan(0);
+    public void whenCompareCombinedComparatorWithEqualNames() {
+        Comparator<Job> combinedComparator = new JobAscByName()
+                .thenComparing(new JobAscByPriority());
+        int rsl = combinedComparator.compare(
+                new Job("Task A", 1),
+                new Job("Task A", 2)
+        );
+        assertThat(rsl).isLessThan(0);
     }
 }
