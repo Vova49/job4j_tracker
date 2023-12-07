@@ -10,8 +10,6 @@ import java.util.Objects;
  * @version 1.0
  */
 public class Account {
-    // Поля класса
-
     /**
      * Реквизиты банковского счета.
      */
