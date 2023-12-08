@@ -21,11 +21,11 @@ public class AnalyzeByMap {
     public static List<Label> averageScoreByPupil(List<Pupil> pupils) {
         List<Label> result = new ArrayList<>();
         for (Pupil pupil : pupils) {
-            double averageScore = pupil.subjects().stream()
-                    .mapToInt(Subject::score)
-                    .average()
-                    .orElse(0D);
-
+            double totalScore = 0;
+            for (Subject subject : pupil.subjects()) {
+                totalScore += subject.score();
+            }
+            double averageScore = pupil.subjects().isEmpty() ? 0 : totalScore / pupil.subjects().size();
             result.add(new Label(pupil.name(), averageScore));
         }
         return result;
@@ -33,21 +33,15 @@ public class AnalyzeByMap {
 
     public static List<Label> averageScoreBySubject(List<Pupil> pupils) {
         Map<String, Double> subjectScores = new HashMap<>();
-        Map<String, Integer> subjectCounts = new HashMap<>();
         for (Pupil pupil : pupils) {
             for (Subject subject : pupil.subjects()) {
                 subjectScores.merge(subject.name(), (double) subject.score(), Double::sum);
-                subjectCounts.merge(subject.name(), 1, Integer::sum);
             }
         }
 
         List<Label> result = new ArrayList<>();
         for (Map.Entry<String, Double> entry : subjectScores.entrySet()) {
-            String subjectName = entry.getKey();
-            double totalScore = entry.getValue();
-            int count = subjectCounts.get(subjectName);
-            double averageScore = totalScore / count;
-            result.add(new Label(subjectName, averageScore));
+            result.add(new Label(entry.getKey(), entry.getValue() / pupils.size()));
         }
         return result;
     }
@@ -79,11 +73,9 @@ public class AnalyzeByMap {
         Label best = null;
         double maxTotalScore = Double.MIN_VALUE;
         for (Map.Entry<String, Double> entry : subjectScores.entrySet()) {
-            String subjectName = entry.getKey();
-            double totalScore = entry.getValue();
-            if (totalScore > maxTotalScore) {
-                maxTotalScore = totalScore;
-                best = new Label(subjectName, totalScore);
+            if (entry.getValue() > maxTotalScore) {
+                maxTotalScore = entry.getValue();
+                best = new Label(entry.getKey(), maxTotalScore);
             }
         }
         return best;
