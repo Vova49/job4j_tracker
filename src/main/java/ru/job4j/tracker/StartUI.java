@@ -11,7 +11,7 @@ public class StartUI {
         this.out = out;
     }
 
-    public void init(Input input, Tracker tracker, List<User> actions) {
+    public void init(Input input, Tracker tracker, List<UserAction> actions) {
         boolean run = true;
         while (run) {
             showMenu(actions);
@@ -20,12 +20,12 @@ public class StartUI {
                 out.println("Неверный ввод, вы можете выбрать: 0 .. " + (actions.size() - 1));
                 continue;
             }
-            User action = actions.get(select);
+            UserAction action = actions.get(select);
             run = action.execute(input, tracker);
         }
     }
 
-    private void showMenu(List<User> actions) {
+    private void showMenu(List<UserAction> actions) {
         out.println("Меню:");
         for (int index = 0; index < actions.size(); index++) {
             out.println(index + ". " + actions.get(index).name());
@@ -36,7 +36,7 @@ public class StartUI {
         Output output = new ConsoleOutput();
         Input input = new ValidateInput(output, new ConsoleInput());
         Tracker tracker = new Tracker();
-        List<User> actions = List.of(
+        List<UserAction> actions = List.of(
                 new Create(output),
                 new FindAll(output),
                 new Replace(output),

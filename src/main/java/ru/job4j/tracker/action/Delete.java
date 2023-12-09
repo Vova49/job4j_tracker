@@ -4,7 +4,7 @@ import ru.job4j.tracker.Input;
 import ru.job4j.tracker.Output;
 import ru.job4j.tracker.Tracker;
 
-public class Delete implements User {
+public class Delete implements UserAction {
     private final Output out;
 
     public Delete(Output out) {

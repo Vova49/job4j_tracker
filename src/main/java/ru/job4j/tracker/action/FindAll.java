@@ -7,7 +7,7 @@ import ru.job4j.tracker.Tracker;
 
 import java.util.List;
 
-public class FindAll implements User {
+public class FindAll implements UserAction {
     private final Output out;
 
     public FindAll(Output out) {
